@@ -10,6 +10,10 @@
 // Mongoose supports arrays of SchemaTypes and arrays of subdocuments.
 // Arrays of SchemaTypes are also called primitive arrays, and arrays of subdocuments are also called document arrays.
 
+// https://www.googleapis.com/books/v1/volumes?q=burger
+// property names to get are title, subtitle, authors, description, thumbnail, id, infoLink
+// for clarity, use googleId instead of id, image instead of thumbnail, link instead of infoLink
+
 // standard way to define a schema
 const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
