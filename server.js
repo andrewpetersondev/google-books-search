@@ -38,7 +38,7 @@ app.get("*", function(req, res) {
 
 // connect to mongo db
 mongoose.connect(
-  process.env.MONGODB_URI || "mongodb://localhost/reactreadinglist"
+  process.env.MONGODB_URI || "mongodb://localhost/googlebooks"
 );
 
 // start the API server
