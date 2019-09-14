@@ -2,12 +2,8 @@ import axios from "axios";
 
 export default {
   // Gets all books
-  getBooks: function() {
+  getSavedBooks: function() {
     return axios.get("/api/books");
-  },
-  // Gets the book with the given id
-  getBook: function(id) {
-    return axios.get("/api/books/" + id);
   },
   // Deletes the book with the given id
   deleteBook: function(id) {
@@ -18,7 +14,7 @@ export default {
     return axios.post("/api/books", bookData);
   },
   // searches google api for books
-  searchBooks: function(title) {
+  search: function(title) {
     return axios.get("https://www.googleapis.com/books/v1/volumes?q=" + title);
   }
 };
