@@ -1,19 +1,15 @@
 // npm packages
 const express = require("express");
 const mongoose = require("mongoose");
+const cors = require("cors");
 
-// node packages
-const path = require("path");
+require("dotenv").config();
 
-// other requirements for server
-// const apiRoutes = require("./routes/apiRoutes");
-const routes = require("./routes");
-
-// express configuration
-const PORT = process.env.PORT || 3001;
 const app = express();
+const PORT = process.env.PORT || 3001;
 
 // Define middleware here
+app.use(cors());
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
@@ -23,10 +19,14 @@ if (process.env.NODE_ENV === "production") {
 }
 
 // add routes, both API and view
+const routes = require("./routes");
 app.use(routes);
 
 // connect to mongo db
-mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/googlebooks");
+mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/googlebooks", {
+  useCreateIndex: true,
+  useNewUrlParser: true
+});
 
 // start the API server
 app.listen(PORT, function() {
