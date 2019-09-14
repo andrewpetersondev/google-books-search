@@ -4,9 +4,6 @@ import Books from "./pages/Books";
 import Detail from "./pages/Detail";
 import NoMatch from "./pages/NoMatch";
 import Nav from "./components/Nav";
-import Search from "../../../nyt-google-books-search-master/client/src/pages/Search";
-import Results from "../../../nyt-google-books-search-master/client/src/pages/Results";
-import Saved from "../../../nyt-google-books-search-master/client/src/pages/Saved";
 
 function App() {
   return (
