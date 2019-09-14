@@ -4,6 +4,9 @@ import Books from "./pages/Books";
 import Detail from "./pages/Detail";
 import NoMatch from "./pages/NoMatch";
 import Nav from "./components/Nav";
+import Search from "../../../nyt-google-books-search-master/client/src/pages/Search";
+import Results from "../../../nyt-google-books-search-master/client/src/pages/Results";
+import Saved from "../../../nyt-google-books-search-master/client/src/pages/Saved";
 
 function App() {
   return (
@@ -11,9 +14,9 @@ function App() {
       <div>
         <Nav />
         <Switch>
-          <Route exact path="/" component={Books} />
-          <Route exact path="/books" component={Books} />
-          <Route exact path="/books/:id" component={Detail} />
+          <Route exact path="/" component={Search} />
+          <Route exact path="/results" component={Results} />
+          <Route exact path="/saved" component={Saved} />
           <Route component={NoMatch} />
         </Switch>
       </div>
