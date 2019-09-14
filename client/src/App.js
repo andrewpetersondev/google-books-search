@@ -4,6 +4,8 @@ import Books from "./pages/Books";
 import Detail from "./pages/Detail";
 import NoMatch from "./pages/NoMatch";
 import Nav from "./components/Nav";
+import Search from "./pages/Search";
+import Saved from "./pages/Saved";
 
 function App() {
   return (
@@ -12,7 +14,7 @@ function App() {
         <Nav />
         <Switch>
           <Route exact path="/" component={Search} />
-          <Route exact path="/results" component={Results} />
+          <Route exact path="/results" component={Search} />
           <Route exact path="/saved" component={Saved} />
           <Route component={NoMatch} />
         </Switch>
