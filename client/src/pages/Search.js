@@ -1,10 +1,10 @@
 import React, { Component } from "react";
+import API from "../utils/API";
 import DeleteBtn from "../components/DeleteBtn";
 import Jumbotron from "../components/Jumbotron";
-import API from "../utils/API";
 import { Link } from "react-router-dom";
 import { Col, Row, Container } from "../components/Grid";
-import { List, ListItem } from "../components/List";
+import { DataList, DataListItem } from "../components/List";
 import SearchForm from "../components/Form";
 
 class Search extends Component {
@@ -15,9 +15,9 @@ class Search extends Component {
     error: ""
   };
 
-  // componentDidMount() {
-  //   this.loadBooks();
-  // }
+  componentDidMount() {
+    this.loadBooks();
+  }
 
   handleInputChange = event => {
     const { name, value } = event.target;
@@ -26,30 +26,30 @@ class Search extends Component {
     });
   };
 
-  handleFormSubmit = event => {
-    event.preventDefault();
-    if (this.state.title) {
-      API.search(title)
-        .then(res => this.loadBooks())
-        .catch(err => console.log(err));
-    }
-  };
-
-  // loadBooks = () => {
-  //   API.getBooks()
-  //     .then(res =>
-  //       this.setState({ books: res.data, title: "", author: "", synopsis: "" })
-  //     )
-  //     .catch(err => console.log(err));
+  // handleFormSubmit = event => {
+  //   event.preventDefault();
+  //   if (this.state.title) {
+  //     API.search(title)
+  //       .then(res => this.loadBooks())
+  //       .catch(err => console.log(err));
+  //   }
   // };
 
   loadBooks = () => {
-    console.log(res.data.items);
-    this.setState({
-      toResults: true,
-      results: res.data.items
-    });
+    API.getBooks()
+      .then(res =>
+        this.setState({ books: res.data, title: "", author: "", synopsis: "" })
+      )
+      .catch(err => console.log(err));
   };
+
+  // loadBooks = () => {
+  //   // console.log(res.data.items);
+  //   this.setState({
+  //     toResults: true,
+  //     results: res.data.items
+  //   });
+  // };
 
   deleteBook = id => {
     API.deleteBook(id)
@@ -57,18 +57,18 @@ class Search extends Component {
       .catch(err => console.log(err));
   };
 
-  // handleFormSubmit = event => {
-  //   event.preventDefault();
-  //   if (this.state.title && this.state.author) {
-  //     API.saveBook({
-  //       title: this.state.title,
-  //       author: this.state.author,
-  //       synopsis: this.state.synopsis
-  //     })
-  //       .then(res => this.loadBooks())
-  //       .catch(err => console.log(err));
-  //   }
-  // };
+  handleFormSubmit = event => {
+    event.preventDefault();
+    if (this.state.title && this.state.author) {
+      API.saveBook({
+        title: this.state.title,
+        author: this.state.author,
+        synopsis: this.state.synopsis
+      })
+        .then(res => this.loadBooks())
+        .catch(err => console.log(err));
+    }
+  };
 
   render() {
     return (
@@ -82,24 +82,23 @@ class Search extends Component {
             <SearchForm value={this.state.search} name="book" />
           </Col>
         </Row>
+
         <Row>
           <Col size="md-12">
-            <Jumbotron>
-              <h2>Search Results</h2>
-            </Jumbotron>
+            <h2>Search Results</h2>
             {this.state.books.length ? (
-              <List>
+              <DataList>
                 {this.state.books.map(book => (
-                  <ListItem key={book._id}>
+                  <DataListItem key={book._id}>
                     <Link to={"/books/" + book._id}>
                       <strong>
                         {book.title} by {book.author}
                       </strong>
                     </Link>
                     <DeleteBtn onClick={() => this.deleteBook(book._id)} />
-                  </ListItem>
+                  </DataListItem>
                 ))}
-              </List>
+              </DataList>
             ) : (
               <h3>No Results to Display</h3>
             )}

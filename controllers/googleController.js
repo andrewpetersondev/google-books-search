@@ -5,6 +5,7 @@ module.exports = {
   findAll: function(req, res) {
     axios
       .get("https://www.googleapis.com/books/v1/volume?", { params: req.query })
+      .then(console.log(response))
       .then(({ data: { results } }) => res.json(results))
       .catch(err => res.status(422).json(err));
   }
