@@ -1,5 +1,4 @@
 // in MVC the controller accepts input and converts it to commands for the model or view
-
 const db = require("../models");
 
 // defining methods for the booksController
@@ -32,3 +31,7 @@ module.exports = {
       .catch(err => res.status(422).json(err));
   }
 };
+
+// questions / concerns
+
+// should i get rid of the sort method in findAll?
