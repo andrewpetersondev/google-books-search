@@ -25,6 +25,7 @@ const bookSchema = new Schema({
   description: { type: String, required: true },
   image: { type: String, required: true },
   link: { type: String, required: true },
+  date: { type: Date, default: Date.now },
   googleId: { type: String, required: true, unique: true }
 });
 
@@ -36,3 +37,25 @@ module.exports = Book;
 
 // if a book has multiple authors, would this schema work?
 // the way to solve this is to model the author key in a way that accepts arrays
+
+// {
+// 	"title": "To Kill a Mockingbird",
+// 	"subtitle": "a good book",
+// 	"authors": "harper lee",
+// 	"description":"a high school classic",
+// 	"image": "google.com",
+// 	"link": "google.com",
+// 	"date": "2019-05-29T02:22:49.052Z",
+// 	"googleId": "asdfljasldfj3q4r34"
+// }
+
+// {
+// 	"title": "bible",
+// 	"subtitle": "a good book",
+// 	"authors": "people",
+// 	"description":"stories",
+// 	"image": "jesus.com",
+// 	"link": "google.com",
+// 	"date": "2019-05-29T02:20:49.052Z",
+// 	"googleId": "asfj3q4r34"
+// }
