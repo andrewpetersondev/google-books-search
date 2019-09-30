@@ -23,9 +23,16 @@ const routes = require("./routes");
 app.use(routes);
 
 // connect to mongo db
-mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/googlebooks", {
+const uri = process.env.MONGODB_URI || "mongodb://localhost/googlebooks";
+
+mongoose.connect(uri, {
   useCreateIndex: true,
   useNewUrlParser: true
+});
+
+const connection = mongoose.connection;
+connection.once("open", () => {
+  console.log("mongoDB database connection established successfully");
 });
 
 // start the API server
